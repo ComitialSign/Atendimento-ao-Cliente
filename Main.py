@@ -1,6 +1,7 @@
+from Interface import interface
 class Main():
     def run(self):
-        print("oi")
+        interface()
 
 if __name__ == "__main__":
     app = Main()
