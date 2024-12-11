@@ -1,4 +1,4 @@
-from Interface import interface
+from AT.Interfaces import interface
 class Main():
     def run(self):
         interface()

@@ -1,4 +1,5 @@
 from Caixa import *
+from Cliente import novo_cliente
 
 def interface_main():
     while True:
@@ -7,11 +8,11 @@ def interface_main():
 
         match opcao:
             case "1":
-                #tarara
-                print("Oi")
+                novo_cliente()
+                atender_cliente()
             case "2":
-                #tarata
                 print("Imprimindo notas...")
+                #imprimir_notas
                 print("Fechando caixa...")
                 break
             case _:

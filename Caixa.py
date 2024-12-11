@@ -1,23 +1,31 @@
 from CsvManager import *
 
 def atender_cliente():
-    dados = ler_dados()
+    novo_cliente()
+    caixa()
 
-def passar_produto():
+
+
+def caixa():
     while True:
         print(f'[1]Passar produto\n[2]Finalizar Atendimento')
         opcao = input("Opção: ")
 
         match opcao:
             case "1":
-                produto_id = input("Digite o ID do produto: ")
-                produto = validar_produto(produto_id)
-                quantidade = int(input("Digite a do produto: "))
-                verificar_quantidade(produto, quantidade)
+                passar_produtos()
             case "2":
+                #nota_fiscal()
+                print("Imprimindo nota fiscal...")
                 break
             case _:
                 print("Opção invalida")
+
+def passar_produtos():
+    produto_id = input("Digite o ID do produto: ")
+    produto = validar_produto(produto_id)
+    quantidade = int(input("Digite a do produto: "))
+    verificar_quantidade(produto, quantidade)
 
 def validar_produto(id):
     dados = ler_dados()
@@ -55,4 +63,14 @@ def atualizar_estoque(produto_atualizado):
 
     salvar_dados
 
+def nota_fiscal():
+    lista = []
+    num_cliente = novo_cliente()
+    produtos = passar_produtos()
+
+    lista.append(num_cliente, produtos)
     
+def novo_cliente():
+    contador = 0
+
+    return contador + 1
