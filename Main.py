@@ -1,7 +1,7 @@
-from AT.Interfaces import interface
+from Interfaces import interface_main
 class Main():
     def run(self):
-        interface()
+        interface_main()
 
 if __name__ == "__main__":
     app = Main()
