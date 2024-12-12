@@ -7,10 +7,10 @@ def interface_main():
 
         match opcao:
             case "1":
-                atender_cliente()
+                caixa()
             case "2":
-                print("Imprimindo notas...")
-                #imprimir_notas
+                ganhos_totais()
+                verificar_estoque_vazio()
                 print("Fechando caixa...")
                 break
             case _:
