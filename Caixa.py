@@ -2,11 +2,17 @@ from CsvManager import *
 from tabulate import tabulate
 from datetime import datetime
 
-lista_de_clientes = []
-contador_cliente = 0
+lista_de_clientes = [] #Lista os clientes atendidos e quanto gastaram
+contador_cliente = 0 # itera o número do cliente
 
 def caixa():
-    lista = []
+    '''
+    Resumo: Loop de uma interface para atender o cliente e imprimir sua nota fiscal
+
+    Não recebe nenhum parâmetro e nem retorna algo
+    '''
+
+    lista = [] #lista onde coloca o produto e a quantidade para a nota fiscal
 
     while True:
         print(f'[1]Passar produto\n[2]Finalizar atendimento do cliente')
@@ -28,6 +34,14 @@ def caixa():
                 print("Opção invalida")    
 
 def validar_produto(id):
+    '''
+    Resumo: Verifica o ID do produto para ver se ele existe no CSVe o retorna, caso contrário retorna nada
+
+    Param: ID
+
+    Retorna: O produto ou None
+    '''
+
     dados = ler_dados()
 
     for item in dados:
@@ -38,6 +52,15 @@ def validar_produto(id):
     return None
 
 def verificar_quantidade(produto, quantidade):
+    '''
+    Resumo: Recebe o produto e a sua quantidade, verifica se ele tem a quantidade pedida no estoque e retorna true, caso
+    contrário retorna false
+
+    Param: produto e quantidade
+
+    Retorna: True ou False
+    '''
+
     dados = ler_dados()
 
     for item in dados:
@@ -54,6 +77,14 @@ def verificar_quantidade(produto, quantidade):
             return True
 
 def atualizar_estoque(produto_atualizado):
+    '''
+    Resumo: Atualiza o estoque no arquivo CSV quando um produto é retirado
+
+    Param: O produto
+
+    Não tem retorno
+    '''
+
     dados = ler_dados()
 
     for item in dados:
@@ -64,6 +95,15 @@ def atualizar_estoque(produto_atualizado):
     salvar_dados(dados)
 
 def nota_fiscal(produtos):
+    '''
+    Resumo: Printa a nota fiscal do produto do que o Cliente comprou. A nota contém qual o cliente, a data e a hora, 
+    os produtos comprados e o total gasto.  
+
+    Param: lista com os produtos
+
+    Não tem retorno
+    '''
+
     if not produtos:
         return
 
@@ -87,6 +127,13 @@ def nota_fiscal(produtos):
     print(f'Itens: {int(len(produtos))}\nTotal: {gasto_total}')
 
 def ganhos_totais():
+    '''
+    Resumo: Ao fechar o caixa, vai printar cada cliente e o quanto cada gastou no total, além do faturamento total
+    do caixa.
+
+    Não recebe parâmetro e nem retorna algo.
+    '''
+
     if not lista_de_clientes:
         return
 
@@ -104,12 +151,26 @@ def ganhos_totais():
     print(f'Total de vendas: {ganho_total}')
 
 def get_date():
+    '''
+    Resumo: Pega a data e a hora, formata e a retorna
+
+    Não tem parâmetro
+
+    Retorna: a Data e a hora formatada no padrão dd/mm/YY H:M
+    '''
+
     date = datetime.now()
     formated_date = date.strftime("%d/%m/%Y %H:%M")
 
     return formated_date
 
 def verificar_estoque_vazio():
+    '''
+    Resumo: Verifica quais produtos do estoque estão vazios e os printa ao fechar o caixa
+
+    Não tem parâmetro e nem retorna algo
+    '''
+
     dados = ler_dados()
 
     produtos_sem_estoque = []
